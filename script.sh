@@ -11,7 +11,7 @@ process_file() {
     local path=$(dirname "$file")
     local owner=$(stat -c %U "$file")
 
-    yara_output=$(yara "/rules/florian.yar" -d "filename=${filename}" -d "extension=${extension}" -d "filepath=${path}" -d "filetype=${extension}" -d "owner=${owner}")
+    yara_output=$(yara -d "filename=${filename}" -d "extension=${extension}" -d "filepath=${path}" -d "filetype=${extension}" -d "owner=${owner}" "/rules/florian.yar" ${file})
     echo "$yara_output"
 }
 
