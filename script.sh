@@ -1,8 +1,7 @@
 #!/bin/bash
 
 
-echo "Start"
-RULES_PATH="/tmp/usbdisk/florian.yar"
+RULES_PATH="/"
 
 # Function to process files
 process_file() {
@@ -18,7 +17,7 @@ process_file() {
     echo "Path: $path"
     echo "Owner: $owner"
 
-    yara_output=$(yara "$RULES_PATH" "$file" -d "filename=${filename}" -d "extension=${extension}" -d "filepath=${path}" -d "filetype=${extension}" -d "owner=${owner}")
+    yara_output=$(yara "/rules/florian.yar" "$file" -d "filename=${filename}" -d "extension=${extension}" -d "filepath=${path}" -d "filetype=${extension}" -d "owner=${owner}")
     echo "YARA output:"
     echo "$yara_output"
     echo "-----------------------"
@@ -40,8 +39,7 @@ process_directory() {
 # Main script
 
 # Set the starting directory here
-starting_directory="/tmp/usbdisk"
+starting_directory="$PWD"
 
-echo "Start"
 process_directory "$starting_directory"
 
