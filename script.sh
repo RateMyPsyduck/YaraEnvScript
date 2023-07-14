@@ -11,16 +11,8 @@ process_file() {
     local path=$(dirname "$file")
     local owner=$(stat -c %U "$file")
 
-    echo "Processing file: $file"
-    echo "Filename: $filename"
-    echo "Extension: $extension"
-    echo "Path: $path"
-    echo "Owner: $owner"
-
     yara_output=$(yara "/rules/florian.yar" "$file" -d "filename=${filename}" -d "extension=${extension}" -d "filepath=${path}" -d "filetype=${extension}" -d "owner=${owner}")
-    echo "YARA output:"
     echo "$yara_output"
-    echo "-----------------------"
 }
 
 # Recursive function to process directories
