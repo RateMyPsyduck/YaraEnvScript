@@ -3,10 +3,6 @@
 
 RULES_PATH="/"
 
-ls
-
-pwd
-
 # Function to process files
 process_file() {
     local file="$1"
