@@ -20,7 +20,7 @@ process_directory() {
     local dir="$1"
 
     echo "$dir"
-    ls
+    echo $(ls)
 
     for file in "$dir"/*; do
         if [ -d "$file" ]; then
