@@ -18,8 +18,6 @@ process_file() {
 # Recursive function to process directories
 process_directory() {
     local dir="$1"
-
-    echo "$dir"
     echo $(ls)
 
     for file in "$dir"/*; do
