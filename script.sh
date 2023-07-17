@@ -11,7 +11,6 @@ process_file() {
     local path=$(dirname "$file")
     local owner=$(stat -c %U "$file")
 
-    echo "$file"
     yara_output=$(yara -C -d "filename=${filename}" -d "extension=${extension}" -d "filepath=${path}" -d "filetype=${extension}" -d "owner=${owner}" "/rules/florian.yar" "$file"})
     echo "$yara_output"
 }
@@ -19,6 +18,8 @@ process_file() {
 # Recursive function to process directories
 process_directory() {
     local dir="$1"
+
+    echo "$dir"
 
     for file in "$dir"/*; do
         if [ -d "$file" ]; then
