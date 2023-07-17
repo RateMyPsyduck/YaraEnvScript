@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-RULES_PATH="/"
+RULES_PATH="/rules/florian.yar"
 
 # Function to process files
 process_file() {
@@ -11,7 +11,7 @@ process_file() {
     local path=$(dirname "$file")
     local owner=$(stat -c %U "$file")
 
-    yara_output=$(yara -d "filename=${filename}" -d "extension=${extension}" -d "filepath=${path}" -d "filetype=${extension}" -d "owner=${owner}" "/rules/florian.yar" ${file})
+    yara_output=$(yara -C -d "filename=${filename}" -d "extension=${extension}" -d "filepath=${path}" -d "filetype=${extension}" -d "owner=${owner}" "/rules/florian.yar" "$file"})
     echo "$yara_output"
 }
 
